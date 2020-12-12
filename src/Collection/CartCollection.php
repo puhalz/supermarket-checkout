@@ -8,7 +8,7 @@ use App\Model\CartItem;
 class CartCollection implements \IteratorAggregate, \Countable
 {
     /** @var CartItem[] */
-    private $cartItems;
+    private $cartItems = [];
 
     public function __construct(array $cartItems = [])
     {
@@ -34,7 +34,7 @@ class CartCollection implements \IteratorAggregate, \Countable
 
     public function isEmpty(): bool
     {
-        return [] === $this->cartItems;
+        return 0 === count($this->cartItems);
     }
 
     /**

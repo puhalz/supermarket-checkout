@@ -9,7 +9,7 @@ use App\Model\Item;
 class ItemCollection implements \IteratorAggregate, \Countable
 {
     /** @var Item[] */
-    private $items;
+    private $items = [];
 
     public function __construct(array $items = [])
     {
@@ -35,7 +35,7 @@ class ItemCollection implements \IteratorAggregate, \Countable
 
     public function isEmpty(): bool
     {
-        return [] === $this->items;
+        return 0 === count($this->items);
     }
 
     /**

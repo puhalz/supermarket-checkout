@@ -8,7 +8,7 @@ use App\Model\PriceList;
 class PriceListCollection implements \IteratorAggregate, \Countable
 {
     /** @var PriceList[] */
-    private $priceList;
+    private $priceList = [];
 
     public function __construct(array $priceList = [])
     {
@@ -34,7 +34,7 @@ class PriceListCollection implements \IteratorAggregate, \Countable
 
     public function isEmpty(): bool
     {
-        return [] === $this->priceList;
+        return 0 === count($this->priceList);
     }
 
     /**
