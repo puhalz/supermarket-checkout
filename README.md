@@ -13,7 +13,7 @@ Supermarket
 
 ```http://127.0.0.1:8000/checkout/review```
 
-## To test the code by changing no of items
+## To test the code by changing number of items
 
 ```src/Controller/ItemController.php```
 
