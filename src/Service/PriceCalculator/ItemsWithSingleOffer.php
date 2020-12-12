@@ -9,7 +9,7 @@ use App\Model\CartItemInterface;
 use App\Model\Item;
 use App\Util\Math;
 
-class NormalOfferCalculator implements OfferCalculatorInterface
+class ItemsWithSingleOffer implements OfferCalculatorInterface
 {
     const ITEM_A_OFFER_FROM_X_ITEMS = 3;
     const ITEM_A_3_SPECIAL_PRICE = 130;

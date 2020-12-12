@@ -7,7 +7,7 @@ namespace App\Service\PriceCalculator;
 use App\Collection\CartCollection;
 use App\Model\CartItemInterface;
 
-class NoOfferCalculator implements OfferCalculatorInterface
+class ItemsWithNoOffer implements OfferCalculatorInterface
 {
     public function calculate(CartItemInterface $cartItem, CartCollection $cartCollection):float
     {

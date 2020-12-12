@@ -5,10 +5,10 @@ namespace App\Factory;
 
 use App\Exception\ItemNotFoundException;
 use App\Model\Item;
-use App\Service\PriceCalculator\NoOfferCalculator;
-use App\Service\PriceCalculator\NormalOfferCalculator;
+use App\Service\PriceCalculator\ItemsWithNoOffer;
+use App\Service\PriceCalculator\ItemsWithSingleOffer;
 use App\Service\PriceCalculator\OfferCalculatorInterface;
-use App\Service\PriceCalculator\OfferCombinationCalculator;
+use App\Service\PriceCalculator\ItemsWithMultipleOffer;
 use App\Service\PriceCalculator\OfferWithOtherItem;
 
 class OfferCalculatorFinderFactory
@@ -21,11 +21,11 @@ class OfferCalculatorFinderFactory
     public static function create($itemName): OfferCalculatorInterface
     {
         if (in_array($itemName, self::NORMAL_OFFER)) {
-            return new NormalOfferCalculator();
+            return new ItemsWithSingleOffer();
         }
 
         if (in_array($itemName, self::OFFER_COMBINATION)) {
-            return new OfferCombinationCalculator();
+            return new ItemsWithMultipleOffer();
         }
 
         if (in_array($itemName, self::OFFER_BASED_ON_OTHER_ITEM)) {
@@ -33,7 +33,7 @@ class OfferCalculatorFinderFactory
         }
 
         if (in_array($itemName, self::NO_OFFER)) {
-            return new NoOfferCalculator();
+            return new ItemsWithNoOffer();
         }
 
         throw new ItemNotFoundException($itemName);

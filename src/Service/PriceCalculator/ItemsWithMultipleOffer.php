@@ -8,7 +8,7 @@ use App\Collection\CartCollection;
 use App\Model\CartItemInterface;
 use App\Util\Math;
 
-class OfferCombinationCalculator implements OfferCalculatorInterface
+class ItemsWithMultipleOffer implements OfferCalculatorInterface
 {
     const ITEM_C_OFFER_FROM_X_ITEMS_1 = 3;
     const ITEM_C_3_SPECIAL_PRICE_1 = 50;
@@ -30,7 +30,6 @@ class OfferCombinationCalculator implements OfferCalculatorInterface
         );
 
         $noOfItemsEligibleForOffer1 = $CheckItemsEligibleForOffer1[0];
-
         $noOfItemsNotEligibleForOffer1 = $CheckItemsEligibleForOffer1[1];
 
         $CheckItemsEligibleForOffer2 = Math::getQuotientAndReminder(
@@ -39,7 +38,6 @@ class OfferCombinationCalculator implements OfferCalculatorInterface
         );
 
         $noOfItemsEligibleForOffer2 = $CheckItemsEligibleForOffer2[0];
-
         $noOfItemsNotEligibleForOffer2 = $CheckItemsEligibleForOffer2[1];
 
         return ($noOfItemsEligibleForOffer1 * self::ITEM_C_3_SPECIAL_PRICE_1) +
