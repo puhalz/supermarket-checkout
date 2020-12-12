@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use App\Exception\InvalidItemException;
+
 class Item implements ItemInterface
 {
     const ITEM_A = 'A';
@@ -17,6 +19,10 @@ class Item implements ItemInterface
 
     public function __construct(String $itemName, float $itemValue)
     {
+        if($itemValue < 0) {
+            throw InvalidItemException::negativeItemValue();
+        }
+
         $this->itemName = $itemName;
         $this->itemValue = $itemValue;
     }

@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use App\Exception\InvalidCartException;
+use App\Exception\InvalidItemException;
+
 class CartItem implements CartItemInterface
 {
     /**
@@ -17,6 +20,10 @@ class CartItem implements CartItemInterface
 
     public function __construct(ItemInterface $item, int $noOfItems)
     {
+        if($noOfItems < 0) {
+            throw InvalidCartException::negativeCartItems();
+        }
+
         $this->item = $item;
         $this->noOfItems = $noOfItems;
     }

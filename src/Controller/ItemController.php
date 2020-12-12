@@ -16,7 +16,7 @@ class ItemController extends AbstractController
     const NO_OF_ITEMS_A = 1;
     const NO_OF_ITEMS_B = 4;
     const NO_OF_ITEMS_C = 6;
-    const NO_OF_ITEMS_D = 5;
+    const NO_OF_ITEMS_D = 2;
     const NO_OF_ITEMS_E = 6;
 
     public function __construct(ItemInterface $itemService, CheckoutInterface $checkoutService)
