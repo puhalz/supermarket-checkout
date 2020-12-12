@@ -18,6 +18,13 @@ class OfferCalculatorFinderFactory
     const OFFER_BASED_ON_OTHER_ITEM = [Item::ITEM_D];
     const NO_OFFER = [Item::ITEM_E];
 
+    /**
+     * @param $itemName
+     *
+     * @return OfferCalculatorInterface
+     *
+     * @throws ItemNotFoundException
+     */
     public static function create($itemName): OfferCalculatorInterface
     {
         if (in_array($itemName, self::NORMAL_OFFER)) {
@@ -36,6 +43,6 @@ class OfferCalculatorFinderFactory
             return new ItemsWithNoOffer();
         }
 
-        throw new ItemNotFoundException($itemName);
+        throw ItemNotFoundException::byItemName($itemName);
     }
 }

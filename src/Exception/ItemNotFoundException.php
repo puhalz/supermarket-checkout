@@ -6,8 +6,8 @@ namespace App\Exception;
 
 final class ItemNotFoundException extends \RuntimeException
 {
-    public static function byId(string $id): self
+    public static function byItemName(string $itemName): self
     {
-        return new self(sprintf('Item "%s" not found', $id));
+        return new self(sprintf('Item "%s" not found', $itemName));
     }
 }
