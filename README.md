@@ -1,5 +1,8 @@
 # Supermarket Checkout
-Supermarket
+
+## Find the problem Statement in the docs folder
+
+```/docs/Programming exercise PHP – supermarket checkout.pdf```
 
 ## Install Composer Packages
 
