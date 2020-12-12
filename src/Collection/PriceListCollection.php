@@ -42,6 +42,15 @@ class PriceListCollection implements \IteratorAggregate, \Countable
      */
     public function toArray(): array
     {
-        return $this->priceList;
+        $priceListArray = [];
+        foreach ($this->priceList as $item) {
+            $priceListArray[] = [
+                'itemName' => $item->getItem()->getItemName(),
+                'noOfItems' => $item->getNoOfItems(),
+                'totalPrice' => $item->getTotalPrice()
+            ];
+        }
+
+        return $priceListArray;
     }
 }

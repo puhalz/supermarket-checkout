@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Symfony!</title>
+</head>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<body>
+<h1>Supermarket Checkout</h1>
+
+<table>
+<tr>
+<th>Item Name</th>
+<th>No. of Items</th>
+<th>Total Price</th>
+</tr>
+{% for item in price_list %}
+    <tr>
+        <td>{{ item.itemName }}</td>
+        <td>{{ item.noOfItems }}</td>
+        <td>{{ item.totalPrice }}</td>
+    </tr>
+{% endfor %}
+</table>
+</body>
+</html>

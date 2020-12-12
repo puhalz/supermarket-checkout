@@ -5,6 +5,10 @@ namespace App\Factory;
 
 use App\Model\Item as ItemModel;
 
+/**
+ * Not used atm.
+ * When Items are added to the system this will be used properly
+ */
 class ItemFactory
 {
     public static function createItems() : array

@@ -1,6 +1,6 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-add_items:
-  path: /add/items
+checkout_review:
+  path: /checkout/review
   controller: App\Controller\ItemController

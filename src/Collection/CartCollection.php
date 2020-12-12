@@ -42,6 +42,13 @@ class CartCollection implements \IteratorAggregate, \Countable
      */
     public function toArray(): array
     {
-        return $this->cartItems;
+        $cartItems = [];
+        foreach ($this->cartItems as $cartItem) {
+            $cartItems[] = [
+                'itemName' => $cartItem->getItem()->getItemName(),
+                'itemValue' => $cartItem->getItem()->getItemValue()
+                ];
+        }
+        return $cartItems;
     }
 }

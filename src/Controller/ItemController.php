@@ -10,9 +10,10 @@ use App\Model\Item as ItemModel;
 use App\Model\PriceList;
 use App\Service\Checkout\Checkout;
 use App\Service\Item\Item as ItemService;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class ItemController
+class ItemController extends AbstractController
 {
     public function __construct(ItemService $itemService, Checkout $checkoutService)
     {
@@ -21,19 +22,10 @@ class ItemController
     }
 
     /**
-     * @Route("/add/items/", name="add_items")
+     * @Route("/checkout/review/", name="checkout_review")
      */
     public function __invoke(): Response
     {
-        $items = $this->itemService->fetchAll();
-
-        /**
-         * @var $item Item
-         */
-        foreach ($items as $item) {
-            //echo $item->getItemName()." ".$item->getItemValue();
-        }
-
         $itemA = new ItemModel('A', 50);
         $itemB = new ItemModel('B', 30);
         $itemC = new ItemModel('C', 20);
@@ -41,7 +33,7 @@ class ItemController
         $itemE = new ItemModel('E', 5);
 
         $addCart1 = new CartItem($itemA, 7);
-        $addCart2 = new CartItem($itemB, 3);
+        $addCart2 = new CartItem($itemB, 4);
         $addCart3 = new CartItem($itemC, 7);
         $addCart4 = new CartItem($itemD, 8);
         $addCart5 = new CartItem($itemE, 5);
@@ -51,14 +43,9 @@ class ItemController
 
         $priceListCollection = $this->checkoutService->processCart($cartItems);
 
-        $contents = '';
-        /** @var $priceList PriceList */
-        foreach ($priceListCollection->getIterator() as $priceList) {
-            echo $priceList->getItem()->getItemName() . " - " .
-                $priceList->getNoOfItems() . " - " .
-                $priceList->getTotalPrice() . "<br/><br/>";
-        }
-
-        return new Response('');
+        return $this->render('cart/list.twig', [
+            'item_list' => $cartItems->toArray(),
+            'price_list' => $priceListCollection->toArray()
+        ]);
     }
 }
