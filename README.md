@@ -19,11 +19,12 @@ Supermarket
 
 In the above path change the number of items in the constant
 
-```    const NO_OF_ITEMS_A = 7;
-       const NO_OF_ITEMS_B = 4;
-       const NO_OF_ITEMS_C = 7;
-       const NO_OF_ITEMS_D = 8;
-       const NO_OF_ITEMS_E = 5;
+```
+const NO_OF_ITEMS_A = 7;
+const NO_OF_ITEMS_B = 4;
+const NO_OF_ITEMS_C = 7;
+const NO_OF_ITEMS_D = 8;
+const NO_OF_ITEMS_E = 5;
 ```
 
 And refresh the page checkout/review to see new results.
