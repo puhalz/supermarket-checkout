@@ -269,6 +269,29 @@ class ItemPriceCalculatorTest extends TestCase
         $this->assertEquals(35, $price);
     }
 
+    public function testItCanCalculateCorrectPriceForItemDWhenNuberOfItemsInAisZero()
+    {
+        $this->item->shouldReceive('getItemName')
+            ->andReturn('D')
+            ->getMock();
+
+        $this->item->shouldReceive('getItemValue')
+            ->andReturn(15)
+            ->getMock();
+
+        $this->cartItem->shouldReceive('getNoOfItems')
+            ->andReturn(2)
+            ->getMock();
+
+        $this->cartItemsNew = \Mockery::mock(CartItem::class);
+        $this->cartCollection->shouldReceive('getIterator')
+            ->andReturn(new \ArrayIterator([new CartItem(new ItemModel('A', 50), 0)]))->getMock();
+
+        $price = $this->itemPriceCalculatorService->calculatePrice($this->cartItem, $this->cartCollection);
+
+        $this->assertEquals(30, $price);
+    }
+
     public function testItCanCalculateCorrectPriceForItemDWhenNuberOfItemsInAisMoreThanItemsInD()
     {
         $this->item->shouldReceive('getItemName')
