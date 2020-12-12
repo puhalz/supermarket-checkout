@@ -23,7 +23,7 @@ class OfferWithOtherItem implements OfferCalculatorInterface
             return $itemDCount * self::ITEM_D_SPECIAL_PRICE;
         }
 
-        if ($itemACount > 0 && $itemDCount > 0 && $itemDCount > $itemACount) {
+        if ($itemDCount > 0 && $itemDCount > $itemACount) {
             $offerNotApplicableItems = $itemDCount - $itemACount;
 
             return ($offerNotApplicableItems * $cartItem->getItem()->getItemValue()) + ($itemACount * self::ITEM_D_SPECIAL_PRICE);
