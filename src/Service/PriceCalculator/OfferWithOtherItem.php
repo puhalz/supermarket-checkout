@@ -33,7 +33,7 @@ class OfferWithOtherItem implements OfferCalculatorInterface
     }
 
     //It can be moved to collection - To get a specific Item.
-    public function getItemACount(CartCollection $cartCollection)
+    private function getItemACount(CartCollection $cartCollection): int
     {
         $itemACount = 0;
 

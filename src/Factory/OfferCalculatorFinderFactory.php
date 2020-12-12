@@ -13,7 +13,7 @@ use App\Service\PriceCalculator\OfferWithOtherItem;
 
 class OfferCalculatorFinderFactory
 {
-    const NORMAL_OFFER = [Item::ITEM_A, Item::ITEM_B];
+    const SINGLE_OFFER = [Item::ITEM_A, Item::ITEM_B];
     const OFFER_COMBINATION = [Item::ITEM_C];
     const OFFER_BASED_ON_OTHER_ITEM = [Item::ITEM_D];
     const NO_OFFER = [Item::ITEM_E];
@@ -27,7 +27,7 @@ class OfferCalculatorFinderFactory
      */
     public static function create($itemName): OfferCalculatorInterface
     {
-        if (in_array($itemName, self::NORMAL_OFFER)) {
+        if (in_array($itemName, self::SINGLE_OFFER)) {
             return new ItemsWithSingleOffer();
         }
 
