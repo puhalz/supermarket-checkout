@@ -7,6 +7,7 @@ namespace App\Service\PriceCalculator;
 use App\Collection\CartCollection;
 use App\Model\CartItemInterface;
 use App\Model\Item;
+use App\Util\Math;
 
 class NormalOfferCalculator implements OfferCalculatorInterface
 {
@@ -28,17 +29,14 @@ class NormalOfferCalculator implements OfferCalculatorInterface
 
     public function calculate(CartItemInterface $cartItem, CartCollection $cartCollection): float
     {
-        /**
-         * gmp_div_qr — Divide numbers and get quotient and remainder
-         */
-        $CheckItemsEligibleForOffer = gmp_div_qr(
+        $CheckItemsEligibleForOffer = Math::getQuotientAndReminder(
             $cartItem->getNoOfItems(),
             $this->offerAppliedItems[$cartItem->getItem()->getItemName()]
         );
 
-        $noOfItemsEligibleForOffer = (int) gmp_strval($CheckItemsEligibleForOffer[0]);
+        $noOfItemsEligibleForOffer = $CheckItemsEligibleForOffer[0];
 
-        $noOfItemsNotEligibleForOffer = (int) gmp_strval($CheckItemsEligibleForOffer[1]);
+        $noOfItemsNotEligibleForOffer = $CheckItemsEligibleForOffer[1];
 
         return ($noOfItemsEligibleForOffer * $this->offerPrice[$cartItem->getItem()->getItemName()])
             + ($noOfItemsNotEligibleForOffer * $cartItem->getItem()->getItemValue());

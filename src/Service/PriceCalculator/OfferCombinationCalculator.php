@@ -6,6 +6,7 @@ namespace App\Service\PriceCalculator;
 
 use App\Collection\CartCollection;
 use App\Model\CartItemInterface;
+use App\Util\Math;
 
 class OfferCombinationCalculator implements OfferCalculatorInterface
 {
@@ -23,27 +24,26 @@ class OfferCombinationCalculator implements OfferCalculatorInterface
     {
         rsort($this->offerAppliedItems);
 
-        $offerPriceTotal = 0;
-        $noOfItemEligibleForOffer = floor($cartItem->getNoOfItems() / $this->offerAppliedItems[0]);
-        if ($noOfItemEligibleForOffer > 0) {
-            $offerPriceTotal = $noOfItemEligibleForOffer * self::ITEM_C_3_SPECIAL_PRICE_1;
-        }
-
-        $offerPriceTotal2 = 0;
-        $noOfItemsEligibleForOffer2 = floor(
-            ($cartItem->getNoOfItems() % $this->offerAppliedItems[0]) / $this->offerAppliedItems[1]
+        $CheckItemsEligibleForOffer1 = Math::getQuotientAndReminder(
+            $cartItem->getNoOfItems(),
+            $this->offerAppliedItems[0]
         );
 
-        if ($noOfItemsEligibleForOffer2 > 0) {
-            $offerPriceTotal2 = $noOfItemsEligibleForOffer2 * self::ITEM_C_2_SPECIAL_PRICE_2;
-        }
+        $noOfItemsEligibleForOffer1 = $CheckItemsEligibleForOffer1[0];
 
-        $normalPriceTotal = 0;
-        $noOfItemNotEligibleForOffer = ($cartItem->getNoOfItems() % $this->offerAppliedItems[0]) % $this->offerAppliedItems[1];
-        if ($noOfItemNotEligibleForOffer > 0) {
-            $normalPriceTotal = $noOfItemNotEligibleForOffer * $cartItem->getItem()->getItemValue();
-        }
+        $noOfItemsNotEligibleForOffer1 = $CheckItemsEligibleForOffer1[1];
 
-        return $normalPriceTotal + $offerPriceTotal + $offerPriceTotal2;
+        $CheckItemsEligibleForOffer2 = Math::getQuotientAndReminder(
+            $noOfItemsNotEligibleForOffer1,
+            $this->offerAppliedItems[1]
+        );
+
+        $noOfItemsEligibleForOffer2 = $CheckItemsEligibleForOffer2[0];
+
+        $noOfItemsNotEligibleForOffer2 = $CheckItemsEligibleForOffer2[1];
+
+        return ($noOfItemsEligibleForOffer1 * self::ITEM_C_3_SPECIAL_PRICE_1) +
+             ($noOfItemsEligibleForOffer2 * self::ITEM_C_2_SPECIAL_PRICE_2) +
+            ($noOfItemsNotEligibleForOffer2 * $cartItem->getItem()->getItemValue());
     }
 }

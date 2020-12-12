@@ -15,14 +15,7 @@ class OfferWithOtherItem implements OfferCalculatorInterface
 
     public function calculate(CartItemInterface $cartItem, CartCollection $cartCollection): float
     {
-        $itemACount = 0;
-
-        /** @var $cartItemList CartItem */
-        foreach ($cartCollection->getIterator() as $cartItemList) {
-            if (self::ITEM_D_OFFER_PURCHASED_WITH_ITEM === $cartItemList->getItem()->getItemName()) {
-                $itemACount = $cartItemList->getNoOfItems();
-            }
-        }
+        $itemACount = $this->getItemACount($cartCollection);
 
         $itemDCount = $cartItem->getNoOfItems();
 
@@ -37,5 +30,20 @@ class OfferWithOtherItem implements OfferCalculatorInterface
         }
 
         return 0;
+    }
+
+    //It can be moved to collection - To get a specific Item.
+    public function getItemACount(CartCollection $cartCollection)
+    {
+        $itemACount = 0;
+
+        /** @var $cartItemList CartItem */
+        foreach ($cartCollection->getIterator() as $cartItemList) {
+            if (self::ITEM_D_OFFER_PURCHASED_WITH_ITEM === $cartItemList->getItem()->getItemName()) {
+                $itemACount = $cartItemList->getNoOfItems();
+            }
+        }
+
+        return $itemACount;
     }
 }
