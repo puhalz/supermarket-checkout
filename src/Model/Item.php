@@ -19,7 +19,7 @@ class Item implements ItemInterface
 
     public function __construct(String $itemName, float $itemValue)
     {
-        if($itemValue < 0) {
+        if ($itemValue < 0) {
             throw InvalidItemException::negativeItemValue();
         }
 

@@ -20,7 +20,7 @@ class CartItem implements CartItemInterface
 
     public function __construct(ItemInterface $item, int $noOfItems)
     {
-        if($noOfItems < 0) {
+        if ($noOfItems < 0) {
             throw InvalidCartException::negativeCartItems();
         }
 

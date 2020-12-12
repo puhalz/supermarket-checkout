@@ -16,7 +16,7 @@ class CartCollectionTest extends TestCase
         $this->cartCollection = new CartCollection([]);
     }
 
-    public function testItCanAddCountItemsInTheCartCollection()
+    public function testItCanCountItemsInTheCartCollection()
     {
         $this->cartCollection->add(new CartItem(new ItemModel('A', 50), 10));
         $this->cartCollection->add(new CartItem(new ItemModel('B', 50), 10));
