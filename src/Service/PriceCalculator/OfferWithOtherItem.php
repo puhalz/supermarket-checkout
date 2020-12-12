@@ -6,13 +6,14 @@ namespace App\Service\PriceCalculator;
 
 use App\Collection\CartCollection;
 use App\Model\CartItem;
+use App\Model\CartItemInterface;
 
 class OfferWithOtherItem implements OfferCalculatorInterface
 {
     const ITEM_D_OFFER_PURCHASED_WITH_ITEM = 'A';
     const ITEM_D_SPECIAL_PRICE = 5;
 
-    public function calculate(CartItem $cartItem, CartCollection $cartCollection): float
+    public function calculate(CartItemInterface $cartItem, CartCollection $cartCollection): float
     {
         $itemACount = 0;
 

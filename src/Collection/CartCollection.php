@@ -47,8 +47,9 @@ class CartCollection implements \IteratorAggregate, \Countable
             $cartItems[] = [
                 'itemName' => $cartItem->getItem()->getItemName(),
                 'itemValue' => $cartItem->getItem()->getItemValue()
-                ];
+            ];
         }
+
         return $cartItems;
     }
 }

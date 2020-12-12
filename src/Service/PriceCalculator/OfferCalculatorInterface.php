@@ -1,12 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Service\PriceCalculator;
 
 use App\Collection\CartCollection;
-use App\Model\CartItem;
+use App\Model\CartItemInterface;
 
 interface OfferCalculatorInterface
 {
-    public function calculate(CartItem $cartItem, CartCollection $cartCollection):float;
+    public function calculate(CartItemInterface $cartItem, CartCollection $cartCollection):float;
 }

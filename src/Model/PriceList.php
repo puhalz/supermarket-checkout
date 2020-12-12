@@ -20,7 +20,7 @@ class PriceList implements PriceListInterface
      */
     private $totalPrice;
 
-    public function __construct(Item $item, int $noOfItems, float $totalPrice)
+    public function __construct(ItemInterface $item, int $noOfItems, float $totalPrice)
     {
         $this->item = $item;
         $this->noOfItems = $noOfItems;

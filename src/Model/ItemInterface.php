@@ -7,7 +7,6 @@ interface ItemInterface
 {
     public function getItemName(): String;
     public function setItemName(String $itemName): void;
-
     public function getItemValue(): float;
     public function setItemValue(float $itemValue): void;
 }

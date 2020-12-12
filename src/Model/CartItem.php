@@ -15,7 +15,7 @@ class CartItem implements CartItemInterface
      */
     private $noOfItems;
 
-    public function __construct(Item $item, int $noOfItems)
+    public function __construct(ItemInterface $item, int $noOfItems)
     {
         $this->item = $item;
         $this->noOfItems = $noOfItems;

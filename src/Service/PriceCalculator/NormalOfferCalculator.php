@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Service\PriceCalculator;
 
 use App\Collection\CartCollection;
-use App\Model\CartItem;
+use App\Model\CartItemInterface;
 use App\Model\Item;
 
 class NormalOfferCalculator implements OfferCalculatorInterface
@@ -26,7 +26,7 @@ class NormalOfferCalculator implements OfferCalculatorInterface
         Item::ITEM_B => self::ITEM_B_2_SPECIAL_PRICE
     ];
 
-    public function calculate(CartItem $cartItem, CartCollection $cartCollection): float
+    public function calculate(CartItemInterface $cartItem, CartCollection $cartCollection): float
     {
         $offerPriceTotal = 0;
         $noOfItemEligibleForOffer = floor($cartItem->getNoOfItems() / $this->offerAppliedItems[$cartItem->getItem()->getItemName()]);

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Service\PriceCalculator;
 
 use App\Collection\CartCollection;
-use App\Model\CartItem;
+use App\Model\CartItemInterface;
 
 class OfferCombinationCalculator implements OfferCalculatorInterface
 {
@@ -19,7 +19,7 @@ class OfferCombinationCalculator implements OfferCalculatorInterface
         self::ITEM_C_OFFER_FROM_X_ITEMS_2,
     ];
 
-    public function calculate(CartItem $cartItem, CartCollection $cartCollection): float
+    public function calculate(CartItemInterface $cartItem, CartCollection $cartCollection): float
     {
         rsort($this->offerAppliedItems);
 
