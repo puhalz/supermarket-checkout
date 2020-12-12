@@ -5,7 +5,7 @@ Supermarket
 
 ```composer i```
 
-## Running PHP Unit Tests
+## Running PHP Unit Tests (Still Adding More tests)
 
 ```php bin/phpunit tests/```
 
