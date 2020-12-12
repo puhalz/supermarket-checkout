@@ -28,19 +28,19 @@ class NormalOfferCalculator implements OfferCalculatorInterface
 
     public function calculate(CartItemInterface $cartItem, CartCollection $cartCollection): float
     {
-        $offerPriceTotal = 0;
-        $noOfItemEligibleForOffer = floor($cartItem->getNoOfItems() / $this->offerAppliedItems[$cartItem->getItem()->getItemName()]);
-        if ($noOfItemEligibleForOffer > 0) {
-            $offerPriceTotal = $noOfItemEligibleForOffer * $this->offerPrice[$cartItem->getItem()->getItemName()];
-        }
+        /**
+         * gmp_div_qr — Divide numbers and get quotient and remainder
+         */
+        $CheckItemsEligibleForOffer = gmp_div_qr(
+            $cartItem->getNoOfItems(),
+            $this->offerAppliedItems[$cartItem->getItem()->getItemName()]
+        );
 
-        $normalPriceTotal = 0;
-        $noOfItemNotEligibleForOffer = $cartItem->getNoOfItems() % $this->offerAppliedItems[$cartItem->getItem()->getItemName()];
+        $noOfItemsEligibleForOffer = (int) gmp_strval($CheckItemsEligibleForOffer[0]);
 
-        if ($noOfItemNotEligibleForOffer > 0) {
-            $normalPriceTotal = $noOfItemNotEligibleForOffer * $cartItem->getItem()->getItemValue();
-        }
+        $noOfItemsNotEligibleForOffer = (int) gmp_strval($CheckItemsEligibleForOffer[1]);
 
-        return $normalPriceTotal + $offerPriceTotal;
+        return ($noOfItemsEligibleForOffer * $this->offerPrice[$cartItem->getItem()->getItemName()])
+            + ($noOfItemsNotEligibleForOffer * $cartItem->getItem()->getItemValue());
     }
 }
