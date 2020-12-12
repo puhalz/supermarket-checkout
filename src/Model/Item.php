@@ -15,7 +15,7 @@ class Item implements ItemInterface
 
     private $itemValue;
 
-    public function __construct(String $itemName,float $itemValue)
+    public function __construct(String $itemName, float $itemValue)
     {
         $this->itemName = $itemName;
         $this->itemValue = $itemValue;

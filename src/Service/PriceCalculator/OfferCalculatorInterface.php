@@ -9,5 +9,5 @@ use App\Model\CartItemInterface;
 
 interface OfferCalculatorInterface
 {
-    public function calculate(CartItemInterface $cartItem, CartCollection $cartCollection):float;
+    public function calculate(CartItemInterface $cartItem, CartCollection $cartCollection): float;
 }
