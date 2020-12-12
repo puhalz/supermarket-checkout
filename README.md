@@ -12,7 +12,7 @@
 
 ```php bin/phpunit tests/  --testdox```
 
-## To see the coverage (xdebug must be enabled before)
+## To see the test coverage (xdebug must be enabled before)
 ```bin/phpunit --coverage-text```
 
 ## To start the Server
