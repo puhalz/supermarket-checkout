@@ -43,3 +43,17 @@ const NO_OF_ITEMS_E = 5;
 ```
 
 And refresh the page checkout/review to see new results.
+
+#  Running the application with the Docker
+
+```docker-compose -f supermarket-checkout-docker/docker-compose.yml up```
+
+## Running the phpunit tests in docker container
+```docker exec -it supermarket-checkout-docker_php-fpm_1 bin/phpunit tests/ --testdox```
+
+## Running the application (To change the values and test use the same way by editing src/Controller/ItemController.php)
+
+```http://localhost/checkout/review```
+
+
+
