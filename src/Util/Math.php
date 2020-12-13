@@ -20,8 +20,8 @@ class Math
         $CheckItemsEligibleForOffer = gmp_div_qr($noOfItemsInCart, $offerApplicableItems);
 
         return [
-            (int)gmp_strval($CheckItemsEligibleForOffer[0]),
-            (int)gmp_strval($CheckItemsEligibleForOffer[1])
+           'quotient' => (int)gmp_strval($CheckItemsEligibleForOffer[0]),
+           'reminder' => (int)gmp_strval($CheckItemsEligibleForOffer[1])
         ];
     }
 }

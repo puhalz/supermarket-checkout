@@ -8,7 +8,7 @@ use App\Collection\CartCollection;
 use App\Model\CartItemInterface;
 use App\Util\Math;
 
-class ItemsWithMultipleOffer implements OfferCalculatorInterface
+class ItemsWithTwoOffer implements OfferCalculatorInterface
 {
     const ITEM_C_OFFER_FROM_X_ITEMS_1 = 3;
     const ITEM_C_3_SPECIAL_PRICE_1 = 50;
@@ -24,21 +24,23 @@ class ItemsWithMultipleOffer implements OfferCalculatorInterface
     {
         rsort($this->offerAppliedItems);
 
+        list($firstOfferAppliedItemsCount, $secondOfferAppliedItemsCount) = $this->offerAppliedItems;
+
         $CheckItemsEligibleForOffer1 = Math::getQuotientAndReminder(
             $cartItem->getNoOfItems(),
-            $this->offerAppliedItems[0]
+            $firstOfferAppliedItemsCount
         );
 
-        $noOfItemsEligibleForOffer1 = $CheckItemsEligibleForOffer1[0];
-        $noOfItemsNotEligibleForOffer1 = $CheckItemsEligibleForOffer1[1];
+        $noOfItemsEligibleForOffer1 = $CheckItemsEligibleForOffer1['quotient'];
+        $noOfItemsNotEligibleForOffer1 = $CheckItemsEligibleForOffer1['reminder'];
 
         $CheckItemsEligibleForOffer2 = Math::getQuotientAndReminder(
             $noOfItemsNotEligibleForOffer1,
-            $this->offerAppliedItems[1]
+            $secondOfferAppliedItemsCount
         );
 
-        $noOfItemsEligibleForOffer2 = $CheckItemsEligibleForOffer2[0];
-        $noOfItemsNotEligibleForOffer2 = $CheckItemsEligibleForOffer2[1];
+        $noOfItemsEligibleForOffer2 = $CheckItemsEligibleForOffer2['quotient'];
+        $noOfItemsNotEligibleForOffer2 = $CheckItemsEligibleForOffer2['reminder'];
 
         return ($noOfItemsEligibleForOffer1 * self::ITEM_C_3_SPECIAL_PRICE_1) +
              ($noOfItemsEligibleForOffer2 * self::ITEM_C_2_SPECIAL_PRICE_2) +

@@ -9,7 +9,7 @@ use App\Model\CartItemInterface;
 use App\Model\Item;
 use App\Util\Math;
 
-class ItemsWithSingleOffer implements OfferCalculatorInterface
+class ItemsWithOneOffer implements OfferCalculatorInterface
 {
     const ITEM_A_OFFER_FROM_X_ITEMS = 3;
     const ITEM_A_3_SPECIAL_PRICE = 130;
@@ -34,9 +34,9 @@ class ItemsWithSingleOffer implements OfferCalculatorInterface
             $this->offerAppliedItems[$cartItem->getItem()->getItemName()]
         );
 
-        $noOfItemsEligibleForOffer = $CheckItemsEligibleForOffer[0];
+        $noOfItemsEligibleForOffer = $CheckItemsEligibleForOffer['quotient'];
 
-        $noOfItemsNotEligibleForOffer = $CheckItemsEligibleForOffer[1];
+        $noOfItemsNotEligibleForOffer = $CheckItemsEligibleForOffer['reminder'];
 
         return ($noOfItemsEligibleForOffer * $this->offerPrice[$cartItem->getItem()->getItemName()])
             + ($noOfItemsNotEligibleForOffer * $cartItem->getItem()->getItemValue());

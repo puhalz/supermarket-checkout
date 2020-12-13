@@ -4,9 +4,9 @@ namespace App\Test\Factory;
 
 use App\Exception\ItemNotFoundException;
 use App\Factory\OfferCalculatorFinderFactory;
-use App\Service\PriceCalculator\ItemsWithMultipleOffer;
+use App\Service\PriceCalculator\ItemsWithTwoOffer;
 use App\Service\PriceCalculator\ItemsWithNoOffer;
-use App\Service\PriceCalculator\ItemsWithSingleOffer;
+use App\Service\PriceCalculator\ItemsWithOneOffer;
 use App\Service\PriceCalculator\OfferWithOtherItem;
 use PHPUnit\Framework\TestCase;
 
@@ -15,13 +15,13 @@ class OfferCalculatorFinderFactoryTest extends TestCase
     public function testItCanReturnCorrectClassForItemName()
     {
         $offerClass = OfferCalculatorFinderFactory::create('A');
-        $this->assertInstanceOf(ItemsWithSingleOffer::class, $offerClass);
+        $this->assertInstanceOf(ItemsWithOneOffer::class, $offerClass);
 
         $offerClass = OfferCalculatorFinderFactory::create('B');
-        $this->assertInstanceOf(ItemsWithSingleOffer::class, $offerClass);
+        $this->assertInstanceOf(ItemsWithOneOffer::class, $offerClass);
 
         $offerClass = OfferCalculatorFinderFactory::create('C');
-        $this->assertInstanceOf(ItemsWithMultipleOffer::class, $offerClass);
+        $this->assertInstanceOf(ItemsWithTwoOffer::class, $offerClass);
 
         $offerClass = OfferCalculatorFinderFactory::create('D');
         $this->assertInstanceOf(OfferWithOtherItem::class, $offerClass);
