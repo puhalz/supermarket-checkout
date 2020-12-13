@@ -46,7 +46,7 @@ And refresh the page checkout/review to see new results.
 
 #  Running the application with the Docker
 
-```docker-compose -f supermarket-checkout-docker/docker-compose.yml up```
+```docker-compose -f supermarket-checkout-docker/docker-compose.yml up -d```
 
 ## Running the phpunit tests in docker container
 ```docker exec -it supermarket-checkout-docker_php-fpm_1 bin/phpunit tests/ --testdox```
