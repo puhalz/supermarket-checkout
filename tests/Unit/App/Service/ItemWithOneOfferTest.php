@@ -16,8 +16,10 @@ class ItemWithOneOfferTest extends TestCase
     private $itemPriceCalculatorService;
     private $item;
 
-    public function setUp()
+    public function setUp(): void
     {
+        parent::setUp();
+
         $this->item = \Mockery::mock(Item::class);
 
         $this->cartCollection = \Mockery::mock(CartCollection::class);

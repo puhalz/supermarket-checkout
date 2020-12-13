@@ -11,7 +11,7 @@ class CartItemTest extends TestCase
     private $item;
     private $cartItem;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

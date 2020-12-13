@@ -11,8 +11,10 @@ class PriceListCollectionTest extends TestCase
 {
     private $priceListCollection;
 
-    public function setUp()
+    public function setUp(): void
     {
+        parent::setUp();
+
         $this->priceListCollection = new PriceListCollection([]);
     }
 

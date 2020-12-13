@@ -11,8 +11,9 @@ class CartCollectionTest extends TestCase
 {
     private $cartCollection;
 
-    public function setUp()
+    public function setUp(): void
     {
+        parent::setUp();
         $this->cartCollection = new CartCollection([]);
     }
 

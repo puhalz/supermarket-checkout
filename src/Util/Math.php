@@ -14,14 +14,9 @@ class Math
             );
         }
 
-        /**
-         * gmp_div_qr — Divide numbers and get quotient and remainder
-         */
-        $CheckItemsEligibleForOffer = gmp_div_qr($noOfItemsInCart, $offerApplicableItems);
-
         return [
-           'quotient' => (int)gmp_strval($CheckItemsEligibleForOffer[0]),
-           'reminder' => (int)gmp_strval($CheckItemsEligibleForOffer[1])
+            'quotient' => (int)\intdiv($noOfItemsInCart, $offerApplicableItems),
+            'reminder' => (int)$noOfItemsInCart % $offerApplicableItems
         ];
     }
 }

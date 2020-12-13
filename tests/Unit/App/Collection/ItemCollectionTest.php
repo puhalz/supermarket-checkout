@@ -10,8 +10,9 @@ class ItemCollectionTest extends TestCase
 {
     private $itemCollection;
 
-    public function setUp()
+    public function setUp(): void
     {
+        parent::setUp();
         $this->itemCollection = new ItemCollection([]);
     }
 
